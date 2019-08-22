@@ -211,7 +211,7 @@ function stdFormat(val, number_val=false)
 
 
 function testMic(){
-
+alert("HELLO");
 }
 
 // This function clears the space where the unit text is, and redraws it.
