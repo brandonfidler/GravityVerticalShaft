@@ -210,7 +210,9 @@ function stdFormat(val, number_val=false)
 }
 
 
+function testMic(){
 
+}
 
 // This function clears the space where the unit text is, and redraws it.
 function textOutputChange(dxf_v = dxf_slider.value, rho_v = rho_slider.value,
