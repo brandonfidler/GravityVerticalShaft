@@ -16,7 +16,7 @@
                 <div class="col-3" id="module_style_controls">
                     <div class="slideGridContainer">
                         <div class="slideGridItem" style="font-weight: bold" onclick="">
-                            <h3>Model Parameters Except Depth & Radius Here:</h3>
+                            <h3>Model Parameters Except Depth <br> & Radius Here:</h3>
                         </div>
 
 
@@ -25,19 +25,19 @@
                            <strong>Station Spacing, dx (m): </strong>
                             <table>
                                 <tr>
-                               <td><button class="ArrowButtons" onclick="dxf_LeftButton();" onmousedown="inter=setInterval(cross_line_loc_slider, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);">&#8249</button></td>
+                               <td><button class="ArrowButtons" onclick="dxf_LeftButton();" onmousedown="inter=setInterval(dxf_LeftButton, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);">&#8249</button></td>
                                 <td><label for="station_spacing"></label><input type="range" class="slider" id="station_spacing"></td>
-                                <td><button class="ArrowButtons" onclick="dxf_RightButton();" onmousedown="inter=setInterval(cross_line_loc_slider, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);">&#8250</button></td>
+                                <td><button class="ArrowButtons" onclick="dxf_RightButton();" onmousedown="inter=setInterval(dxf_RightButton, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);">&#8250</button></td>
                                 </tr>
                             </table>
                         </div>
                             <!--slider section for the Cross Line Location  -->
                         <div class="slideGridItem">
-                            <strong>Cross Line Location (m): </strong>
+                            <strong>Density Contrast, Rho (g/cm^3): </strong>
                             <table>
                                 <tr>
                                     <td><button class="ArrowButtons" onclick="rho_LeftButton();" onmousedown="inter=setInterval(rho_LeftButton, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);">&#8249</button></td>
-                                    <td><label for="cross_line_loc"></label><input type="range" class="slider" id="cross_line_loc"></td>
+                                    <td><label for="densityContrast"></label><input type="range" class="slider" id="densityContrast"></td>
                                     <td><button class="ArrowButtons" onclick="rho_RightButton();" onmousedown="inter=setInterval(rho_RightButton, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);">&#8250</button></td>
                                 </tr>
                             </table>
@@ -45,9 +45,16 @@
                         </div>
 
                         <div class="slideGridItem">
-                            <strong>Density Contrast, Rho (g/cm^3):</strong>
+                            <strong>Cross Line Location:</strong>
+                            <table>
+                                <tr>
+                                    <td><button class="ArrowButtons" onclick="cross_line_loc_LeftButton();" onmousedown="inter=setInterval(cross_line_loc_LeftButton, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);">&#8249</button></td>
+                                    <td><label for="cross_line_loc"></label><input type="range" min="1" max="21" value="1" class="slider" id="cross_line_loc"></td>
+                                    <td><button class="ArrowButtons"onclick="cross_line_loc_RightButton();" onmousedown="inter=setInterval(cross_line_loc_RightButton, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);">&#8250</button></td>
+                                </tr>
+                            </table>
+                        </div>
 
-                            <label for="densityContrast"></label><input type="range" min="1" max="66" value="1" class="slider" id="densityContrast"></div>
                         <div class="slideGridItem">
                             <strong>Number of Readings at Each Station:</strong>
                             <table>
@@ -58,6 +65,7 @@
                                 </tr>
                             </table>
                         </div>
+
                         <div class="slideGridItem">
                             <strong>Std. Deviation of Observations (nT):</strong>
                             <table>
@@ -68,28 +76,32 @@
                                 </tr>
                             </table>
 
-                        <!--</div>-->
-                        <!--&lt;!&ndash; Radius Control Panel &ndash;&gt;-->
-                        <!--<canvas class="gtRadSample" width="240px" height="240px" style="position: absolute; background-color: #e9e9e9; border: 1px solid #ddd; margin-top: 535px; z-index: 0;"></canvas>-->
-                        <!--<div style="padding-top: 45px; z-index: 1;">-->
-                            <!--<div style="margin-left: 85px;">-->
-                                <!--<button id="rad_up_arrow" onclick="radArrowUp();" onmousedown="inter=setInterval(radArrowUp, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);" style="width: 70px;"><img src="arrow.png" alt="up" style="width: 50px; height: 50px;"/></button>-->
-                            <!--</div>-->
-                            <!--<div><button id="rad_left_arrow" onclick="radArrowLeft();" onmousedown="inter=setInterval(radArrowLeft, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);" style="width: 70px; margin-left: 10px;"><img class="rotate270" src="arrow.png" alt="left" style="width: 50px; height: 50px;"/></button>-->
-                                <!--<button id="rad_right_arrow" onclick="radArrowRight();"  onmousedown="inter=setInterval(radArrowRight, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);" style="width: 70px; margin-left: 76px;"><img class="rotate90" src="arrow.png" alt="right" style="width: 50px; height: 50px;"/></button>-->
-                            <!--</div>-->
-                            <!--<div style="margin-left: 85px;">-->
-                                <!--<button id="rad_down_arrow" onclick="radArrowDown();" onmousedown="inter=setInterval(radArrowDown, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);" style="width: 70px;"><img class="rotate180" src="arrow.png" alt="down" style="width: 50px; height: 50px;"/></button><p></p>-->
-                            <!--</div>-->
+                        </div>
 
-                        <!--</div>-->
+
+
+                        <!-- Radius Control Panel -->
+                        <canvas class="gtRadSample" width="240px" height="230px" style="position: absolute; background-color: #e9e9e9; border: 1px solid #ddd; margin-top: 494px; z-index: 0;"></canvas>
+                        <div style="padding-top: 45px; z-index: 1;">
+                            <div style="margin-left: 85px;">
+                                <button id="rad_up_arrow" onclick="radArrowUp();" onmousedown="inter=setInterval(radArrowUp, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);" style="width: 70px;"><img src="arrow.png" alt="up" style="width: 50px; height: 50px;"/></button>
+                            </div>
+                            <div><button id="rad_left_arrow" onclick="radArrowLeft();" onmousedown="inter=setInterval(radArrowLeft, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);" style="width: 70px; margin-left: 10px;"><img class="rotate270" src="arrow.png" alt="left" style="width: 50px; height: 50px;"/></button>
+                                <button id="rad_right_arrow" onclick="radArrowRight();"  onmousedown="inter=setInterval(radArrowRight, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);" style="width: 70px; margin-left: 76px;"><img class="rotate90" src="arrow.png" alt="right" style="width: 50px; height: 50px;"/></button>
+                            </div>
+                            <div style="margin-left: 85px;">
+                                <button id="rad_down_arrow" onclick="radArrowDown();" onmousedown="inter=setInterval(radArrowDown, 100);" onmouseup="clearInterval(inter);" onmouseout="clearInterval(inter);" style="width: 70px;"><img class="rotate180" src="arrow.png" alt="down" style="width: 50px; height: 50px;"/></button><p></p>
+                            </div>
+
+                        </div>
+
+
                         <!-- rescale button -->
                         <div class="slideGridItem"><button onclick="rescale()">
                             Rescale Plot</button></div>
                     </div>
                 </div>
             </div>
-
 
 
             <div class="gridItem">

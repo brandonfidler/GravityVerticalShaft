@@ -7,7 +7,7 @@ GRAVITY VERTICAL SHAFT
 // data graphic and cross-section with tunnel
 const AP_WIDTH = 500;
 const AP_HEIGHT = 500;
-
+const X_OFFSET = 100;
 //Define some  constants for the gravity data plot
 // Width of plotting Area
 const P_WIDTH = AP_WIDTH;
@@ -67,7 +67,7 @@ let cyl_bot = 1000.0;
 // In line location of cylinder along line (m)
 let xloc = 0.0;
 // Radius of cylinder (m)
-let radius = 15;
+let radius = 25;
 // Horizontal location of cylinder across line (m)
 let yloc = 0.0;
 // Standard deviation of readings
@@ -76,9 +76,7 @@ let std = 0.0;
 let nobs = 1;
 // Reading increment (m)
 let dx = 0.5;
-let depth2top = -5.0; //Depth to top of dike
-let depth2bot = 500.0; //Depth to bottom of dike
-let width = 25.0; //Width of dike (m)
+
 //Now define minimum and maximum values in user space
 //and corresponding maximums and minimums for the scroll bars
 //that must be integers
@@ -117,6 +115,12 @@ let stdf=0.01;
 let yf=0.0;
 let ndataf=2;
 
+
+let width = 25.0; //Width of dike (m)
+let depth2top = -5.0; //Depth to top of dike
+let depth2bot = 500.0; //Depth to bottom of dike
+
+
 // Value for big G and a  value for the random number generator
 let G = (6.67 * Math.pow(10.0, -11.0));
 let last_y;
@@ -135,9 +139,8 @@ let key_pressed = false;
 
 const canvas = document.querySelector('.gvsCanvas');
 const ctx = canvas.getContext('2d');
-const r_ctx = width_canvas.getContext('2d');
 const width_canvas = document.querySelector('.gtRadSample');
-
+const r_ctx = width_canvas.getContext('2d');
 
 function start()
 {
@@ -155,9 +158,15 @@ function start()
         setSlideBars();
         paint();
         displaySliderValues();
-
     }
 }
+
+
+function initialPaint(){
+    labels();
+}
+
+
 
 function paint()
 {
@@ -165,23 +174,12 @@ function paint()
     plotXSection();
     // Plot Gravity Data
     plotTheory();
+    // Draw Parameter Labels on lower left side of plot
+    labels();
     // Draw Axes
     drawAxis();
+
 }
-
-
-// function labels()
-// {
-//     ctx.fillStyle = "#000000";
-//     r_ctx.fillStyle = "#000000";
-//     ctx.font = "12px Arial";
-//     r_ctx.fillText("Depth: ", 5, 12);
-//     r_ctx.fillText("Width: ", 5, 24);
-//     r_ctx.fillText("Move to Surface ", 83, 24);
-//     r_ctx.fillText("Move to Deeper Depth", 73, 222);
-//     r_ctx.fillText("Decrease Radius", 2, 87);
-//     r_ctx.fillText("Increase Radius", 159, 87);
-// }
 
 // Compute scales for plotting data graphic
 function setScales()
@@ -218,7 +216,7 @@ function rescale()
 {
     ctx.clearRect(0,0, canvas.width, canvas.height);
     setScales();
-    paint();
+    // paint();
     displaySliderValues();
 }
 
@@ -273,7 +271,7 @@ function plotXSection()
     if(x2 > xmax)
         x2 = xmax;
     px = getDX(x1);
-    py = getXY(cyl_top);
+    py = getXY(depth2top-4);
     px1 = getDX(x2)-px;
     py1 = getXY(dmin) - py;
 
@@ -288,7 +286,18 @@ function plotXSection()
     ctx.fillStyle = "#000000";
 
 }
-
+function labels()
+{
+    ctx.fillStyle = "#000000";
+    r_ctx.fillStyle = "#000000";
+    ctx.font = "12px Arial";
+    r_ctx.fillText("Depth: ", 5, 12);
+    r_ctx.fillText("Width: ", 5, 24);
+    r_ctx.fillText("Move to Surface ", 83, 24);
+    r_ctx.fillText("Move to Deeper Depth", 73, 222);
+    r_ctx.fillText("Decrease Radius", 2, 87);
+    r_ctx.fillText("Increase Radius", 159, 87);
+}
 // Draw Axes and Labels for x, gravity value, and depth.
 function drawAxis()
 {
@@ -368,6 +377,21 @@ dxf_slider.oninput = function ()
     dxf = dxfFormat(this.value, true);
     frameChanged();
 };
+function dxf_LeftButton()
+{
+    dxf_slider.value--;
+    dxf = dxfFormat(dxf_slider.value, true);
+    textOutputChange(dxf_slider.value);
+    frameChanged();
+}
+function dxf_RightButton()
+{
+    dxf_slider.value++;
+    dxf = dxfFormat(dxf_slider.value, true);
+    textOutputChange(dxf_slider.value);
+    frameChanged();
+}
+
 cross_line_loc_slider.oninput = function()
 {
     textOutputChange(dxf_slider.value, this.value);
@@ -375,18 +399,66 @@ cross_line_loc_slider.oninput = function()
     frameChanged();
 
 };
+function cross_line_loc_LeftButton()
+{
+    cross_line_loc_slider.value--;
+    yf = cross_line_locFormat(cross_line_loc_slider.value, true);
+    textOutputChange(dxf_slider.value, cross_line_loc_slider.value);
+
+}
+function cross_line_loc_RightButton()
+{
+    cross_line_loc_slider.value++;
+    yf = cross_line_locFormat(cross_line_loc_slider.value, true);
+    textOutputChange(dxf_slider.value, cross_line_loc_slider.value);
+    frameChanged();
+}
+helpMe = function()
+{
+
+}
+
 rho_slider.oninput = function ()
 {
     textOutputChange(dxf_slider.value, cross_line_loc_slider.value, this.value);
     rhof = rhoFormat(this.value, true);
     frameChanged();
 };
+function rho_LeftButton()
+{
+    rho_slider.value--;
+    rhof = rhoFormat(rho_slider.value, true);
+    textOutputChange(dxf_slider.value,cross_line_loc_slider.value, rho_slider.value, );
+    frameChanged();
+}
+function rho_RightButton()
+{
+    rho_slider.value++;
+    rhof = rhoFormat(rho_slider.value, true);
+    textOutputChange(dxf_slider.value, cross_line_loc_slider.value, rho_slider.value,);
+    frameChanged();
+}
 n_of_obs_slider.oninput = function ()
 {
     textOutputChange(dxf_slider.value, cross_line_loc_slider.value, rho_slider.value, this.value);
     ndataf = this.value;
     frameChanged();
 };
+function n_of_obs_LeftButton()
+{
+    n_of_obs_slider.value--;
+    ndataf = n_of_obs_slider.value;
+    textOutputChange(dxf_slider.value, cross_line_loc_slider.value, rho_slider.value, n_of_obs_slider.value);
+    frameChanged();
+}
+function n_of_obs_RightButton()
+{
+    n_of_obs_slider.value++;
+    ndataf = n_of_obs_slider.value;
+    textOutputChange(dxf_slider.value, cross_line_loc_slider.value, rho_slider.value, n_of_obs_slider.value);
+    frameChanged();
+}
+
 std_dev_slider.oninput = function ()
 {
     textOutputChange(dxf_slider.value, cross_line_loc_slider.value, rho_slider.value, n_of_obs_slider.value,
@@ -394,6 +466,25 @@ std_dev_slider.oninput = function ()
     stdf = stdFormat(this.value, true);
     frameChanged();
 };
+function std_LeftButton()
+{
+    std_dev_slider.value--;
+    stdf = stdFormat(std_dev_slider.value, true);
+    textOutputChange(dxf_slider.value, cross_line_loc_slider.value,rho_slider.value, n_of_obs_slider.value, std_dev_slider.value);
+    frameChanged();
+}
+function std_RightButton()
+{
+    std_dev_slider.value++;
+    stdf = stdFormat(std_dev_slider.value, true);
+    textOutputChange(dxf_slider.value,cross_line_loc_slider.value, rho_slider.value, n_of_obs_slider.value, std_dev_slider.value);
+    frameChanged();
+}
+//////////////////////////////////////
+// Trigger events for the range sliders, each time the user moves the slider
+// (e.g. Station Spacing) the corresponding function below will fire.
+
+
 
 // If the Boolean value "number_val" is set to true, then the following format
 // functions will return float values instead of a string.
@@ -426,6 +517,12 @@ function stdFormat(val, number_val=false)
 function textOutputChange(dxf_v = dxf_slider.value, cr_ln_loc_v = cross_line_loc_slider.value, rho_v = rho_slider.value,
                           n_of_obs_v = n_of_obs_slider.value, std_v = std_dev_slider.value)
 {
+    // alert("textOutputChange")
+    ctx.clearRect(X_OFFSET, label_list_y_loc-10, 130, 70);
+    ctx.fillStyle = "#00DD00";
+    ctx.rect( X_OFFSET, label_list_y_loc-10, 130, 70);
+    ctx.fill();
+    labels();
     displaySliderValues(dxf_v, cr_ln_loc_v, rho_v, n_of_obs_v, std_v);
 }
 
@@ -433,7 +530,7 @@ function textOutputChange(dxf_v = dxf_slider.value, cr_ln_loc_v = cross_line_loc
 function displaySliderValues(dxf_v = dxf_slider.value, cr_ln_loc_v = cross_line_loc_slider.value, rho_v = rho_slider.value,
                              n_of_obs_v = n_of_obs_slider.value, std_v = std_dev_slider.value)
 {
-    document.getElementById("depth_val").innerHTML = ((-cyl_top).toFixed(1)+" m");
+    document.getElementById("depth_val").innerHTML = ((-depth2top).toFixed(1)+" m");
     document.getElementById("radius_val").innerHTML = (radius.toFixed(1)+" m");
     document.getElementById("contrast_val").innerHTML = (rhoFormat(rho_v)+" gm/cm^3");
     document.getElementById("y_location_val").innerHTML = (cross_line_locFormat(cr_ln_loc_v)+" m");
@@ -521,7 +618,7 @@ function getG(x, y)
     //and one for r < radius. To insure that both match at
     //r = radius we'll evaluate both there and add a small
     //constant to one of the expressions.
-    cos_theta = Math.abs(cyl_top / radius);
+    cos_theta = Math.abs(depth2top / radius);
     p1 = cos_theta;
     p2 = (3.0 * Math.pow(cos_theta, 2.0) - 1.0) / 2.0;
     p4 = (35.0 * Math.pow(cos_theta, 4.0) -
@@ -540,8 +637,8 @@ function getG(x, y)
 
     //Now do computations at correct location
     xs = Math.sqrt((xloc - x) * (xloc - x) + y * y);
-    r = Math.sqrt(cyl_top * cyl_top + xs * xs);
-    cos_theta = Math.abs(cyl_top / r);
+    r = Math.sqrt(depth2top * depth2top + xs * xs);
+    cos_theta = Math.abs(depth2top / r);
     p1 = cos_theta;
     p2 = (3.0 * Math.pow(cos_theta, 2.0) - 1.0) / 2.0;
     p4 = (35.0 * Math.pow(cos_theta, 4.0) -
@@ -603,23 +700,25 @@ function Circle(x, y, r, stroke) {
 // Controls for the shaft object
 window.addEventListener('keydown', function (e) {
     e.preventDefault();
-    if(e.key === "ArrowDown" && (-cyl_top)<24)
+    if(e.key === "ArrowDown" && (-depth2top)<24)
     {
         key_pressed = true;
-        cyl_top -= 0.1;
+        depth2top -= 0.1;
         force += 1;
         ctx.clearRect(0,0, canvas.width, canvas.height);
-        // r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
+        r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
+
         paint();
         displaySliderValues();
     }
-    else if(e.key === "ArrowUp" && (-cyl_top)>0.2)
+    else if(e.key === "ArrowUp" && (-depth2top)>0.2)
     {
         key_pressed = true;
-        cyl_top += 0.1;
+        depth2top += 0.1;
         force += 1;
         ctx.clearRect(0,0, canvas.width, canvas.height);
-        // r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
+        r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
+
         paint();
         displaySliderValues();
     }
@@ -635,7 +734,8 @@ window.addEventListener('keydown', function (e) {
 
         force += 1;
         ctx.clearRect(0,0, canvas.width, canvas.height);
-        // r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
+        r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
+
         paint();
         displaySliderValues();
     }
@@ -650,7 +750,8 @@ window.addEventListener('keydown', function (e) {
             radius -= 0.1;
         force += 1;
         ctx.clearRect(0,0, canvas.width, canvas.height);
-        // r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
+        r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
+
         paint();
         displaySliderValues();
     }
@@ -665,65 +766,66 @@ window.addEventListener('keyup', function (e) {
     force = 0;
 });
 
+let dragging = false;
 
-// function radArrowLeft()
-// {
-//     if(width > -500)
-//     {
-//         if(force >= 30 && force < 90)
-//             width -= 0.2;
-//         else if(force >= 90)
-//             width -= 1;
-//         else
-//             width -= 0.1;
-//         force += 1;
-//         ctx.clearRect(0,0, canvas.width, canvas.height);
-//         r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
-//         paint();
-//         displaySliderValues();
-//     }
-// }
-// function radArrowRight()
-// {
-//     if(width < 2000)
-//     {
-//         if(force >= 30 && force < 90)
-//             width += 0.2;
-//         else if(force >= 90)
-//             width += 1;
-//         else
-//             width += 0.1;
-//
-//         force += 1;
-//         ctx.clearRect(0,0, canvas.width, canvas.height);
-//         r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
-//         paint();
-//         displaySliderValues();
-//     }
-// }
-// function radArrowUp()
-// {
-//     if(-depth2top > 0)
-//     {
-//         key_pressed = true;
-//         depth2top += 0.1;
-//         force += 1;
-//         ctx.clearRect(0,0, canvas.width, canvas.height);
-//         r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
-//         paint();
-//         displaySliderValues();
-//     }
-// }
-// function radArrowDown()
-// {
-//     if(-depth2top < 25)
-//     {
-//         key_pressed = true;
-//         depth2top -= 0.1;
-//         force += 1;
-//         ctx.clearRect(0,0, canvas.width, canvas.height);
-//         r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
-//         paint();
-//         displaySliderValues();
-//     }
-// }
+function radArrowLeft()
+{
+    if(radius > -500)
+    {
+        if(force >= 30 && force < 90)
+            radius -= 0.2;
+        else if(force >= 90)
+            radius -= 1;
+        else
+            radius -= 0.1;
+        force += 1;
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+        r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
+        paint();
+        displaySliderValues();
+    }
+}
+function radArrowRight()
+{
+    if(radius < 2000)
+    {
+        if(force >= 30 && force < 90)
+            radius += 1;
+        else if(force >= 90)
+            radius += 5;
+        else
+            radius += 0.1;
+
+        force += 1;
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+        r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
+        paint();
+        displaySliderValues();
+    }
+}
+function radArrowUp()
+{
+    if(-depth2top > 0)
+    {
+        key_pressed = true;
+        depth2top += 0.1;
+        force += 1;
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+        r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
+        paint();
+        displaySliderValues();
+    }
+}
+function radArrowDown()
+{
+    if(-depth2top < 25)
+    {
+        key_pressed = true;
+        depth2top -= 0.1;
+        force += 1;
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+        r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
+        paint();
+        displaySliderValues();
+    }
+}

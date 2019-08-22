@@ -83,31 +83,12 @@ function displaySliderValues(dxf_v = dxf_slider.value, rho_v = rho_slider.value,
 
 // Trigger events for the range sliders, each time the user moves the slider
 // (e.g. Station Spacing) the corresponding function below will fire.
-cross_line_loc_slider.oninput= function(){
-    textOutputChange(this.value);
-    dxf = dxfFormat(this.value, true);
-    frameChanged();
-}
-function cross_line_loc_LeftButton(){
-    dxf_slider.value--;
-    dxf = dxfFormat(dxf_slider.value, true);
-    textOutputChange(dxf_slider.value);
-    frameChanged();
-}
-function cross_line_loc_RightButton(){
-    dxf_slider.value++;
-    dxf = dxfFormat(dxf_slider.value, true);
-    textOutputChange(dxf_slider.value);
-    frameChanged();
-}
-
 dxf_slider.oninput = function ()
 {
     textOutputChange(this.value);
     dxf = dxfFormat(this.value, true);
     frameChanged();
 };
-
 function dxf_LeftButton()
 {
     dxf_slider.value--;
@@ -208,6 +189,8 @@ function stdFormat(val, number_val=false)
         return ((val-1)*dStd+StdMin);
     return ((val-1)*dStd+StdMin).toFixed(3);
 }
+
+
 
 
 // This function clears the space where the unit text is, and redraws it.
