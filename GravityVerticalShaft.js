@@ -293,7 +293,7 @@ function labels()
     r_ctx.fillStyle = "#000000";
     ctx.font = "12px Arial";
     r_ctx.fillText("Depth: ", 5, 12);
-    r_ctx.fillText("Width: ", 5, 24);
+    r_ctx.fillText("Radius: ", 5, 24);
     r_ctx.fillText("Move to Surface ", 83, 24);
     r_ctx.fillText("Move to Deeper Depth", 73, 222);
     r_ctx.fillText("Decrease Radius", 2, 87);
@@ -529,6 +529,8 @@ function displaySliderValues(dxf_v = dxf_slider.value, cr_ln_loc_v = cross_line_
 {
     document.getElementById("depth_val").innerHTML = ((-depth2top).toFixed(1)+" m");
     document.getElementById("radius_val").innerHTML = (radius.toFixed(1)+" m");
+    r_ctx.fillText((-depth2top).toFixed(1)+" m", 42, 12);
+    r_ctx.fillText(radius.toFixed(1)+" m", 42, 24);
     document.getElementById("contrast_val").innerHTML = (rhoFormat(rho_v)+" gm/cm^3");
     document.getElementById("y_location_val").innerHTML = (cross_line_locFormat(cr_ln_loc_v)+" m");
     document.getElementById("station_spacing_val").innerHTML = (dxfFormat(dxf_v)+" m");
