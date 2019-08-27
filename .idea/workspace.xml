@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="837b249d-1877-45ef-99c0-1407d6d8b3de" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GravityVerticalShaft.html" beforeDir="false" afterPath="$PROJECT_DIR$/GravityVerticalShaft.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GravityVerticalShaft.js" beforeDir="false" afterPath="$PROJECT_DIR$/GravityVerticalShaft.js" afterDir="false" />
-    </list>
+    <list default="true" id="837b249d-1877-45ef-99c0-1407d6d8b3de" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -20,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GravityVerticalShaft.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="60" column="36" lean-forward="true" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
+            <state relative-caret-position="392">
+              <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
               <folding>
                 <element signature="n#style#0;n#p#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -138,12 +134,12 @@
       <workItem from="1555540248353" duration="3284000" />
       <workItem from="1565386871485" duration="4995000" />
       <workItem from="1566511841357" duration="1807000" />
-      <workItem from="1566924584896" duration="4173000" />
+      <workItem from="1566924584896" duration="4391000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22376000" />
+    <option name="totallyTimeSpent" value="22594000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="0" width="1202" height="1080" extended-state="6" />
@@ -201,8 +197,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GravityVerticalShaft.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="60" column="36" lean-forward="true" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
+        <state relative-caret-position="392">
+          <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
           <folding>
             <element signature="n#style#0;n#p#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
