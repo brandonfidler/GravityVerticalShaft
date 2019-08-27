@@ -109,7 +109,7 @@ let s_value;	//variable used to collect scrollbar info
 
 //Define Variables used to some initial values
 let dxf=1.0;
-let rhof=-2.67;
+let rhof=-2.6;
 let depthf=5.0;
 let stdf=0.01;
 let yf=0.0;
@@ -217,7 +217,7 @@ function rescale()
     ctx.clearRect(0,0, canvas.width, canvas.height);
     r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
     setScales();
-    // paint();
+    paint();
     displaySliderValues();
 }
 
@@ -405,7 +405,7 @@ function cross_line_loc_LeftButton()
     cross_line_loc_slider.value--;
     yf = cross_line_locFormat(cross_line_loc_slider.value, true);
     textOutputChange(dxf_slider.value, cross_line_loc_slider.value);
-
+    frameChanged();
 }
 function cross_line_loc_RightButton()
 {
@@ -773,7 +773,7 @@ function radArrowLeft()
         if(force >= 30 && force < 90)
             radius -= 0.2;
         else if(force >= 90)
-            radius -= 1;
+            radius -= 2;
         else
             radius -= 0.1;
         force += 1;
@@ -790,7 +790,7 @@ function radArrowRight()
         if(force >= 30 && force < 90)
             radius += 1;
         else if(force >= 90)
-            radius += 5;
+            radius += 2;
         else
             radius += 0.1;
 
@@ -803,7 +803,7 @@ function radArrowRight()
 }
 function radArrowUp()
 {
-    if(-depth2top > 0)
+    if(-depth2top > .1)
     {
         key_pressed = true;
         depth2top += 0.1;
