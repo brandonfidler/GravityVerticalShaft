@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="837b249d-1877-45ef-99c0-1407d6d8b3de" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GravityVerticalShaft.html" beforeDir="false" afterPath="$PROJECT_DIR$/GravityVerticalShaft.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GravityVerticalShaft.js" beforeDir="false" afterPath="$PROJECT_DIR$/GravityVerticalShaft.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -54,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GravityVerticalShaft.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="241" column="20" lean-forward="true" selection-start-line="241" selection-start-column="20" selection-end-line="241" selection-end-column="20" />
+            <state relative-caret-position="515">
+              <caret line="139" column="52" lean-forward="true" selection-start-line="139" selection-start-column="52" selection-end-line="139" selection-end-column="52" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -138,16 +136,15 @@
       <workItem from="1555540248353" duration="3284000" />
       <workItem from="1565386871485" duration="4995000" />
       <workItem from="1566511841357" duration="1807000" />
-      <workItem from="1566924584896" duration="3138000" />
+      <workItem from="1566924584896" duration="3498000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21341000" />
+    <option name="totallyTimeSpent" value="21701000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="0" width="1722" height="1080" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19811875" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -214,8 +211,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GravityVerticalShaft.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="241" column="20" lean-forward="true" selection-start-line="241" selection-start-column="20" selection-end-line="241" selection-end-column="20" />
+        <state relative-caret-position="515">
+          <caret line="139" column="52" lean-forward="true" selection-start-line="139" selection-start-column="52" selection-end-line="139" selection-end-column="52" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

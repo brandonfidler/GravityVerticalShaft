@@ -272,7 +272,7 @@ function plotXSection()
     if(x2 > xmax)
         x2 = xmax;
     px = getDX(x1);
-    py = getXY(depth2top-4);
+    py = getXY(depth2top);
     px1 = getDX(x2)-px;
     py1 = getXY(dmin) - py;
 
