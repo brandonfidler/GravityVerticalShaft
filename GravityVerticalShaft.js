@@ -215,6 +215,7 @@ function setScales()
 function rescale()
 {
     ctx.clearRect(0,0, canvas.width, canvas.height);
+    r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
     setScales();
     // paint();
     displaySliderValues();
@@ -413,10 +414,6 @@ function cross_line_loc_RightButton()
     textOutputChange(dxf_slider.value, cross_line_loc_slider.value);
     frameChanged();
 }
-helpMe = function()
-{
-
-}
 
 rho_slider.oninput = function ()
 {
@@ -548,6 +545,7 @@ function frameChanged()
     yloc = yf;
 
     ctx.clearRect(0,0, canvas.width, canvas.height);
+    r_ctx.clearRect(0,0, width_canvas.width, width_canvas.height);
     paint();
     displaySliderValues();
 }
