@@ -299,7 +299,7 @@ function labels()
     r_ctx.fillText("Decrease Radius", 2, 87);
     r_ctx.fillText("Increase Radius", 159, 87);
 }
-// Draw Axes and Labels for x, gravity value, and depth.
+// Draw Axes and Labels for x, gravity value, and depth. test
 function drawAxis()
 {
     let run = false;
